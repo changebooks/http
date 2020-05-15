@@ -49,6 +49,10 @@ func Do(c *http.Client, req *http.Request, useTrace bool, maxRetries int,
 	s.Retries = retries
 	s.Request = req
 
+	if s.Elapsed == nil {
+		s.Elapsed = &Elapsed{}
+	}
+
 	s.Elapsed.TransferDone = time.Now()
 	s.Elapsed.Transfer = s.Elapsed.TransferDone.Sub(s.Elapsed.TransferStart)
 
